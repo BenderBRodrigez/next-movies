@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import { cn } from "../utils/common-utils";
+import { QueryProvider } from "../components/query/query.provider";
+import { AuthProvider } from "../components/auth/auth.provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +20,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={"h-full"}>
+      <body className={cn("h-full", font.className)}>
+        <div className="flex flex-col min-h-full bg-[url('/background.png')] bg-bottom bg-contain bg-no-repeat">
+          <AuthProvider>
+            <QueryProvider>
+              {children}
+              <ToastContainer position={"top-center"} />
+            </QueryProvider>
+          </AuthProvider>
+        </div>
+      </body>
     </html>
   );
 }

@@ -6,21 +6,51 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:sync": "yarn typeorm schema:sync -d ormconfig.ts",
+    "db:log": "yarn typeorm schema:log -d ormconfig.ts",
+    "db:down": "yarn typeorm migration:revert -d ormconfig.ts",
+    "db:create": "yarn typeorm migration:create",
+    "db:up": "yarn typeorm migration:run -d ormconfig.ts",
+    "db:generate": "yarn typeorm migration:generate -p true -d ormconfig.ts",
+    "db:check": "yarn typeorm migration:generate --check true -d ormconfig.ts fake-filename",
+    "db:generate:init": "yarn db:generate -t 1657785979107 ./migrations/init",
+    "typeorm": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' typeorm-ts-node-commonjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-query": "^5.56.2",
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "clsx": "^2.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "next": "14.2.6",
+    "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.6"
+    "react-hook-form": "^7.53.0",
+    "react-icons": "^5.3.0",
+    "react-toastify": "^10.0.5",
+    "reflect-metadata": "^0.2.2",
+    "tailwind-merge": "^2.5.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tanstack/eslint-plugin-query": "^5.56.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/lodash": "^4.17.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.6"
+    "terser-webpack-plugin": "^5.3.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }
